@@ -1,0 +1,40 @@
+@import url('https://fontlibrary.org/en/font/the-strike-nest');
+
+body {
+    background-color: antiquewhite;
+    color: black;
+}
+p {
+    font-family: 'strike nest';
+    font-size: 100px;
+    text-align: center;
+    color: gold;
+}
+nav {
+    text-align: center;
+}
+#lewo {
+    width: 48%; /* szerokość kolumny */
+    padding: 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+#prawo {
+    width: 48%; /* szerokość kolumny */
+    padding: 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    justify-content: space-between; /* przestrzeń między sekcjami */
+    padding: 40px;
+}
+#zajebiscieszybkikalkulator {
+    text-align: center;
+    color: darkblue;
+    font-family: 'Franklin Gothic Medium';
+    font-size: 100px;
+    background-color: aliceblue;
+    margin: 400px;
+}
