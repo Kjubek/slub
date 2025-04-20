@@ -1,28 +1,46 @@
-const date = new Date(2025,8,27,14,30,0);
-const countdownDate = date.getTime();
-//document.getElementById("date").innerHTML = date.toLocaleTimeString() + " | " + date.toLocaleDateString();
-
-let x = setInterval(function() {
-
-    let now = new Date().getTime();
-
-    let distance = countdownDate - now;
-
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    if(hours < 10) hours = "0" + hours;
-    if(minutes < 10) minutes = "0" + minutes;
-    if(seconds < 10) seconds = "0" + seconds;
-
-    document.getElementById("time").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("time").innerHTML = "Ślub";
+function updateCountdown() {
+    const targetDate = new Date(2025, 8, 27, 14, 30); // 27 września 2025 14:30
+    const now = new Date();
+  
+    if (now >= targetDate) {
+      document.getElementById("countdown").innerHTML = "🎉 Ślub! 🎉";
+      return;
     }
-
-}, 1000);
-
+  
+    let years = targetDate.getFullYear() - now.getFullYear();
+    let months = targetDate.getMonth() - now.getMonth();
+    let days = targetDate.getDate() - now.getDate();
+    let hours = targetDate.getHours() - now.getHours();
+    let minutes = targetDate.getMinutes() - now.getMinutes();
+  
+    if (minutes < 0) {
+      minutes += 60;
+      hours--;
+    }
+  
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+  
+    if (days < 0) {
+      const prevMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0);
+      days += prevMonth.getDate();
+      months--;
+    }
+  
+    if (months < 0) {
+      months += 12;
+      years--;
+    }
+  
+    // Wyświetlanie
+    document.getElementById("months").textContent = months + years * 12;
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+  }
+  
+  // Odświeżaj co sekundę
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
