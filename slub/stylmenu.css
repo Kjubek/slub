@@ -1,7 +1,6 @@
 .pretty-button {
     display: inline-block;
     padding: 24px 48px;
-    background-color: antiquewhite;
     color: #333; /* ciemniejszy tekst dla kontrastu */
     font-family: 'The Strike Nest', sans-serif;
     font-size: 36px;
@@ -22,3 +21,17 @@
     transform: translateY(0);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   }
+  nav .pretty-button {
+    background: #e91e63;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  nav .pretty-button:hover {
+    background: #c2185b;
+  }
+  
