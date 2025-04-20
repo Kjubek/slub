@@ -1,41 +1,60 @@
-@import url('https://fontlibrary.org/en/font/the-strike-nest');
-
-body {
-    background-color: antiquewhite;
-    color: black;
-    font-size: 200px;
-}
-p {
-    font-family: 'strike nest';
-    font-size: 100px;
-    text-align: center;
-    color: gold;
-}
-nav {
-    text-align: center;
-}
-#lewo {
-    width: 48%; /* szerokość kolumny */
-    padding: 20px;
-    font-size: 20px;
+* {
     box-sizing: border-box;
-}
-#prawo {
-    width: 48%; /* szerokość kolumny */
-    padding: 20px;
-    font-size: 20px;
-    box-sizing: border-box;
-}
-.container {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: #fff0f5; /* pudrowy róż */
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: #ffe4ec;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+  /* Sekcje ślubne */
+  .container {
     display: flex;
-    justify-content: space-between; /* przestrzeń między sekcjami */
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: 40px;
-}
-#zajebiscieszybkikalkulator {
+    gap: 20px;
+  }
+  
+  #lewo, #prawo {
+    width: 48%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    #lewo, #prawo {
+      width: 100%;
+    }
+  }
+  
+  /* Plan ślubu */
+  ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin-top: 10px;
+  }
+  
+  /* Footer */
+  footer {
     text-align: center;
-    color: darkblue;
-    font-family: 'Franklin Gothic Medium';
-    font-size: 100px;
-    background-color: aliceblue;
-    margin: 400px;
-}
+    padding: 20px;
+    background: #ffe4ec;
+    font-size: 14px;
+    color: #777;
+  }
