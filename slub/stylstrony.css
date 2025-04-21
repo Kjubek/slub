@@ -1,3 +1,4 @@
+/*Styl ogólny strony*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +6,7 @@
   }
   
   body {
-    background: #fff0f5; /* pudrowy róż */
+    background: #fff0f5; 
     font-family: 'Segoe UI', sans-serif;
     color: #333;
     line-height: 1.6;
@@ -17,8 +18,28 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     text-align: center;
   }
-  
-  /* Sekcje ślubne */
+/*TytuLowa strona*/ 
+#tytul {
+  text-align: center;
+  font-size: 100px;
+  color: gold;
+  width: 98%; 
+  margin: 20px auto; 
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  line-height: 1.5;
+}
+/*Obraz*/
+#obraz img {
+  display: block;
+  max-width: 90%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Sekcje ślubne */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -27,8 +48,8 @@
     gap: 20px;
   }
   
-  #lewo, #prawo {
-    width: 48%;
+  #lewo, #prawo, #srodek {
+    width: 31%;
     background: #fff;
     padding: 20px;
     border-radius: 20px;
@@ -38,23 +59,60 @@
   }
   
   @media (max-width: 768px) {
-    #lewo, #prawo {
+    #lewo, #prawo, #srodek {
       width: 100%;
     }
   }
   
-  /* Plan ślubu */
+/* Plan ślubu */
+  .plan {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;  
+  }
+  #plan {
+    width: 98%; 
+    margin: 20px auto; 
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 20px;
+    line-height: 1.5;
+  }
   ul {
     list-style-type: disc;
     padding-left: 40px;
     margin-top: 10px;
   }
   
-  /* Footer */
+/* Footer */
   footer {
     text-align: center;
     padding: 20px;
     background: #ffe4ec;
-    font-size: 14px;
+    font-size: 25px;
     color: #777;
   }
+/*Galeria*/  
+  .gallery-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  .media-box {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: #fff;
+  }
+  .media-box a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
