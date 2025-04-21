@@ -21,7 +21,7 @@
 /*TytuLowa strona*/ 
 #tytul {
   text-align: center;
-  font-size: 100px;
+  font-size: clamp(32px, 10vw, 100px);;
   color: gold;
   width: 98%; 
   margin: 20px auto; 
