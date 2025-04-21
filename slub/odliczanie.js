@@ -1,5 +1,5 @@
 function updateCountdown() {
-    const targetDate = new Date(2025, 8, 27, 14, 30); // 27 września 2025 14:30
+    const targetDate = new Date(2025, 8, 27, 14, 0); // 27 września 2025 14:30
     const now = new Date();
   
     if (now >= targetDate) {
