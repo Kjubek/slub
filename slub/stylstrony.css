@@ -2,15 +2,23 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #ffe4ec;
+    background-color:  #fbf2e3;
     color: #333;
   }
   
   header {
-    background: #e91e63;
+    background-color: #f0e6d2;
+    background-image: url(img/zdjencie.JPEG);
+    background-repeat: no-repeat;
+    background-size: contain; /* dopasowanie rozmiaru */
+    background-position: center; /* wyśrodkowanie */
+    width: 100vw;                     /* 100% szerokości okna */
+    height: 66.66vh;      
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
-    padding: 20px;
-    text-align: center;
+    text-shadow: 0 0 5px black;
   }
   
   main {
@@ -73,7 +81,8 @@ body {
   .plan {
     display: flex;
     justify-content: space-between; 
-    align-items: center;  
+    align-items: center; 
+    text-align: left; 
   }
   
   #plan {
