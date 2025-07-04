@@ -11,7 +11,7 @@
   
   #zegarek h1 {
     font-size: 2.5em;
-    color: #c2185b;
+    color: #761517;
     margin-bottom: 30px;
   }
   
@@ -23,7 +23,7 @@
   }
   
   .time-box {
-    background: #ffeef4;
+    background: #B34740;
     border-radius: 20px;
     padding: 20px;
     width: 110px;
@@ -37,7 +37,7 @@
   
   .time-value {
     font-size: 2.5em;
-    color: #e91e63;
+    color: #761517;
     margin-bottom: 5px;
     font-weight: bold;
   }
@@ -45,7 +45,7 @@
   .time-label {
     font-size: 0.9em;
     text-transform: uppercase;
-    color: #777;
+    color: #f0e6d2;
   }
   
   #countdown {
