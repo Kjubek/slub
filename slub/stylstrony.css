@@ -27,36 +27,13 @@ body {
   }
   
   footer {
-    background: #e91e63;
+    background: #992C2F;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 30px;
   }
-  
-  /* Tytułowa strona */
-  #tytul {
-    text-align: center;
-    font-size: clamp(28px, 8vw, 96px);
-    color: gold;
-    width: 95%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    line-height: 1.5;
-  }
-  
-  /* Obraz główny */
-  #obraz img {
-    display: block;
-    max-width: 90%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+    
   /* Sekcje ślubne */
   .container {
     display: flex;
@@ -114,6 +91,32 @@ body {
     max-width: 300px;
     width: 100%;
     border-radius: 10px;
+  }
+
+  /*Stopka*/
+  .stopka {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* <- kluczowa zmiana */
+    gap: 20px; /* dodaje odstęp między divami */
+    
+  }
+  
+  #lewa_stopka, #prawa_stopka {
+    width: 400px;
+    height: 300px;
+    padding: 10px;
+    background: #fff;
+    color: #333;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 20px;
+    line-height: 1.5;
+    box-sizing: border-box; /* zapobiega przekroczeniu wymiarów przez padding */
+    }
+  
+  p {
+    font-size: 25px;
   }
   
   /* Responsywność dla urządzeń mobilnych */
