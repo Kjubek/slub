@@ -1,144 +1,544 @@
-/* Styl ogólny strony */
-body {
+/* stylstrony.css - Wersja super nowoczesna (z optymalizacją headera na telefony) */
+
+/* --- Zmienne CSS dla łatwej modyfikacji --- */
+:root {
+    /* Paleta Kolorów */
+    --color-background-light: #FDFCEF; /* Bardzo jasny kremowy/ecru, niemal biały */
+    --color-background-medium: #F5EFE6; /* Delikatny beż, dla tła sekcji */
+    --color-bordeaux-dark: #6C0A32; /* Głębokie, eleganckie bordo */
+    --color-bordeaux-light: #9B1D4C; /* Jaśniejsze bordo dla akcentów */
+    --color-gold-bright: #FFD700; /* Jasne, żywe złoto */
+    --color-gold-subtle: #D4AF37; /* Spokojniejsze złoto */
+    --color-text-primary: #3C3C3C; /* Ciemny, miękki tekst */
+    --color-text-secondary: #6A6A6A; /* Jasniejszy tekst */
+
+    /* Czcionki */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Cienie (delikatne i warstwowe) */
+    --shadow-subtle: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-strong: 0 15px 45px rgba(0, 0, 0, 0.15);
+
+    /* Przejścia (szybkie i płynne) */
+    --transition-fast: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* easeOutQuad */
+    --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-slow: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- Import Czcionek z Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* --- Global Reset & Base Styles --- */
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color:  #fbf2e3;
-    color: #333;
-  }
-  
-  header {
-    background-color: #f0e6d2;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Bazowy rozmiar dla rem */
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.75;
+    color: var(--color-text-primary);
+    background: linear-gradient(155deg, var(--color-background-light) 0%, var(--color-background-medium) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* --- Header --- */
+header {
     background-image: url(img/zdjencie.JPEG);
     background-repeat: no-repeat;
-    background-size: contain; /* dopasowanie rozmiaru */
-    background-position: center; /* wyśrodkowanie */
-    width: 100vw;                     /* 100% szerokości okna */
-    height: 66.66vh;      
+    background-size: cover; /* KLUCZOWA ZMIANA: Obrazek zawsze pokryje cały obszar headera */
+    background-position: center; /* Wyśrodkowanie obrazka */
+    background-attachment: scroll; /* Domyślnie przewijany z treścią */
+    /* background-attachment: fixed; /* Opcjonalnie: efekt paralaksy, obraz będzie stał w miejscu, a treść będzie się przewijać nad nim */
+
+    width: 100vw;
+    height: 66.66vh; /* Wysokość nagłówka na desktopie */
+
+    box-shadow: var(--shadow-medium);
+    color: var(--color-background-light); /* Kolor tekstu w headerze */
+    text-shadow: 0 0 5px black; /* Cień tekstu dla lepszej czytelności na obrazie */
+    position: relative;
+    z-index: 50;
+
+    /* Flexbox do centrowania zawartości (tekstu w headerze) */
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    text-shadow: 0 0 5px black;
-  }
-  
-  main {
-    padding: 30px;
-    text-align: center;
-  }
-  
-  footer {
-    background: #992C2F;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 30px;
-  }
-    
-  /* Sekcje ślubne */
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 40px 20px;
-    gap: 20px;
-  }
-  
-  #lewo, #prawo, #srodek {
-    flex: 1 1 30%;
-    max-width: 30%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-  
-  /* Plan ślubu */
-  .plan {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    text-align: left; 
-  }
-  
-  #plan {
-    width: 98%; 
-    margin: 20px auto; 
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-size: 20px;
-    line-height: 1.5;
-  }
-  
-  ul {
-    list-style-type: disc;
-    padding-left: 40px;
-    margin-top: 10px;
-  }
-  
-  /* Galeria zdjęć */
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .gallery img {
-    max-width: 300px;
-    width: 100%;
-    border-radius: 10px;
-  }
+}
 
-  /*Stopka*/
-  .stopka {
+
+/* --- Main Content Layout --- */
+main {
+    flex-grow: 1;
+    padding: 3.5rem 1.5rem; /* Więcej przestrzeni, używamy rem */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+article {
+    width: 100%;
+    max-width: 1300px; /* Jeszcze szersza treść */
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 1.5rem; /* Większe zaokrąglenia */
+    box-shadow: var(--shadow-medium);
+    padding: 3rem; /* Większy padding wewnętrzny */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(2rem);
+    animation: fadeInSlideUp 1s forwards var(--transition-slow);
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Section Styling (Card-like appearance) --- */
+section {
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    background-color: var(--color-background-medium);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(var(--color-bordeaux-light), 0.1); /* Bardzo subtelna ramka */
+}
+
+section:hover {
+    transform: translateY(-0.75rem); /* Większe uniesienie */
+    box-shadow: var(--shadow-medium); /* Wyraźniejszy cień */
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-bordeaux-dark);
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.04);
+    line-height: 1.2;
+    font-weight: 700; /* Upewnij się, że Playfair Display jest pogrubiony */
+}
+
+h1 { font-size: 3.6rem; } /* Jeszcze większe nagłówki */
+h2 { font-size: 2.8rem; }
+h3 { font-size: 2.2rem; }
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    font-weight: 400; /* Regularna waga */
+}
+
+b {
+    color: var(--color-bordeaux-light);
+    font-weight: 600; /* Wyższa waga */
+}
+
+/* --- Images --- */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 0.8rem; /* Zaokrąglenie */
+    box-shadow: var(--shadow-medium);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+img:hover {
+    transform: scale(1.02) rotate(0.5deg); /* Delikatniejsze efekty */
+    box-shadow: var(--shadow-strong);
+}
+
+/* --- Kontakt Page Specific --- */
+.plan {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    width: 100%;
+}
+
+#plan {
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    padding: 3.5rem;
+    border-radius: 1.8rem; /* Większe zaokrąglenia */
+    box-shadow: var(--shadow-medium);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+#plan ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 1.5rem;
+}
+
+#plan ul li {
+    position: relative;
+    margin-bottom: 0.8rem;
+    padding-left: 2.5rem;
+    color: var(--color-text-primary);
+    font-weight: 500; /* Średnia waga */
+}
+
+#plan ul li::before {
+    content: '💫'; /* Inna, bardziej dynamiczna emotikona */
+    position: absolute;
+    left: 0;
+    color: var(--color-gold-bright);
+    font-size: 1em;
+    animation: pulseGlow 1.8s infinite alternate ease-in-out; /* Nowa animacja */
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+    50% { transform: scale(1.1); text-shadow: 0 0 15px rgba(255, 215, 0, 0.7); }
+    100% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+}
+
+
+/* --- Wiadomości Page Specific (.container) --- */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Większy min-width */
+    gap: 2rem; /* Większy odstęp */
+    margin-bottom: 2.5rem;
+}
+
+#lewo, #srodek, #prawo {
+    background-color: var(--color-background-medium);
+    padding: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-subtle);
+    text-align: left;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+#lewo:hover, #srodek:hover, #prawo:hover {
+    transform: translateY(-0.6rem);
+    box-shadow: var(--shadow-medium);
+}
+
+#lewo b, #srodek b, #prawo b {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 1.35rem;
+    color: var(--color-bordeaux-dark);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--color-bordeaux-dark);
+    color: var(--color-background-light);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 -0.5rem 2rem rgba(0, 0, 0, 0.15);
+    margin-top: 3.5rem;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+}
+
+.stopka {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* <- kluczowa zmiana */
-    gap: 20px; /* dodaje odstęp między divami */
-    
-  }
-  
-  #lewa_stopka, #prawa_stopka {
-    width: 400px;
-    height: 300px;
-    padding: 10px;
-    background: #fff;
-    color: #333;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-size: 20px;
-    line-height: 1.5;
-    box-sizing: border-box; /* zapobiega przekroczeniu wymiarów przez padding */
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+#lewa_stopka, #prawa_stopka {
+    flex: 1;
+    min-width: 300px;
+    max-width: 480px; /* Szersze mapy */
+    background-color: rgba(255, 255, 255, 0.07); /* Lekko przezroczyste tło */
+    padding: 1.2rem;
+    border-radius: 1rem;
+    text-align: left;
+    transition: background-color var(--transition-fast);
+}
+
+#lewa_stopka:hover, #prawa_stopka:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+#lewa_stopka b, #prawa_stopka b {
+    color: var(--color-gold-bright);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1.2rem;
+}
+
+/* Iframes map (Google Maps) */
+iframe {
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-subtle);
+    width: 100%;
+    height: 180px; /* Standardowa wysokość, można dostosować */
+    margin-bottom: 1rem;
+    transition: transform var(--transition-fast);
+}
+
+iframe:hover {
+    transform: scale(1.005); /* Bardzo subtelne powiększenie */
+}
+
+/* --- Galeria Page Specific --- */
+form#uploadForm {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem;
+    background-color: var(--color-background-medium);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-subtle);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(var(--color-bordeaux-light), 0.1);
+}
+
+form#uploadForm input[type="file"] {
+    border: 2px solid var(--color-bordeaux-light);
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: #fff;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+form#uploadForm input[type="file"]:focus {
+    border-color: var(--color-gold-bright);
+    box-shadow: 0 0 0 3px rgba(var(--color-gold-bright), 0.3); /* Subtelna poświata focusu */
+    outline: none;
+}
+
+form#uploadForm button {
+    background-color: var(--color-gold-bright);
+    color: var(--color-bordeaux-dark);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    letter-spacing: 0.03em; /* Delikatny odstęp */
+}
+
+form#uploadForm button:hover {
+    background-color: #FFEB80; /* Jaśniejszy odcień złota */
+    transform: translateY(-0.25rem);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+    margin: 2.5rem auto;
+    border: 0;
+    height: 1px; /* Bardziej subtelna linia */
+    background: linear-gradient(to right, rgba(var(--color-bordeaux-light), 0) 0%, var(--color-bordeaux-light) 50%, rgba(var(--color-bordeaux-light), 0) 100%); /* Gradientowa linia */
+    width: 60%; /* Węższa linia */
+    opacity: 0.6;
+}
+
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: var(--color-background-light);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(var(--color-bordeaux-light), 0.08);
+}
+
+.media-box {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-subtle);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(var(--color-gold-subtle), 0.2); /* Subtelna złota ramka */
+}
+
+.media-box:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow-medium);
+}
+
+.media-box img,
+.media-box video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.media-box a {
+    background-color: var(--color-gold-subtle);
+    color: var(--color-bordeaux-dark);
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color var(--transition-fast);
+    display: inline-block;
+    margin-top: auto;
+}
+
+.media-box a:hover {
+    background-color: var(--color-gold-bright);
+}
+
+/* --- Responsywność (Mobile-First approach with rem units) --- */
+@media (max-width: 1200px) {
+    html { font-size: 15px; }
+}
+
+@media (max-width: 992px) {
+    html { font-size: 14px; }
+    article { padding: 2.5rem; }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.4rem; }
+    h3 { font-size: 1.9rem; }
+    #plan { padding: 3rem; }
+    .container { gap: 1.5rem; }
+    #gallery { gap: 1.2rem; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 13px; }
+    header {
+        height: 50vh; /* Zmniejsz wysokość nagłówka na tabletach */
+        /* Opcjonalnie: background-attachment: scroll; jeśli nie chcesz efektu paralaksy na mobilnym */
     }
-  
-  p {
-    font-size: 25px;
-  }
-  
-  /* Responsywność dla urządzeń mobilnych */
-  @media (max-width: 768px) {
-    #lewo, #prawo, #srodek {
-      max-width: 100%;
-      flex: 1 1 100%;
+    main { padding: 1.5rem 1rem; }
+    article {
+        padding: 2rem;
+        border-radius: 1rem;
     }
-  
-    .gallery {
-      flex-direction: column;
-      align-items: center;
+    section {
+        padding: 1.8rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.8rem;
     }
-  
-    .gallery img {
-      width: 90%;
-      max-width: 100%;
+    h1 { font-size: 2.5rem; margin-bottom: 1rem;}
+    h2 { font-size: 2.0rem; }
+    h3 { font-size: 1.6rem; }
+    p { font-size: 1.0rem; }
+
+    #plan {
+        padding: 2.5rem;
+        font-size: 1.05rem;
+        border-radius: 1.2rem;
     }
-  
-    #tytul {
-      padding: 12px;
-      font-size: clamp(20px, 8vw, 48px);
+    #plan ul li {
+        padding-left: 2rem;
+        margin-bottom: 0.6rem;
     }
-  }
-  
+
+    .stopka {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    #lewa_stopka, #prawa_stopka {
+        width: 98%;
+        max-width: 98%;
+    }
+
+    form#uploadForm {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    form#uploadForm button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    #gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .media-box {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 12px; }
+    header {
+        height: 40vh; /* Zmniejsz wysokość nagłówka jeszcze bardziej na telefonach */
+        /* background-attachment: scroll; /* Na telefonach paralaksa bywa problematyczna, można wyłączyć */
+    }
+    main { padding: 1rem 0.5rem; }
+    article {
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.8rem;}
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+    p { font-size: 0.9rem; }
+
+    #plan {
+        padding: 1.8rem;
+        font-size: 0.95rem;
+        border-radius: 1rem;
+    }
+    #plan ul li {
+        padding-left: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    footer { padding: 2.5rem 1rem; }
+    .stopka { gap: 1rem; }
+    iframe { height: 160px; }
+}
