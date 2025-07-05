@@ -1,37 +1,106 @@
+/* stylmenu.css - Wersja super nowoczesna (z menu kolumnowym na telefony) */
+
 nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: #f0e6d2;
-  padding: 0 0 10px 0; /* góra 0, dół 10px */
-  margin: 0; /* usuwa margines */
+    background-color: var(--color-bordeaux-dark);
+    padding: 1.3rem 0; /* Używamy rem */
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    border-bottom: 3px solid var(--color-gold-bright); /* Wyraźna złota linia */
+
+    /* Dodajemy flexbox do nawigacji, aby linki były elastyczne */
+    display: flex;
+    justify-content: center; /* Centrowanie elementów poziomo */
+    align-items: center; /* Centrowanie elementów pionowo */
+    flex-wrap: wrap; /* Pozwala elementom zawijać się do nowej linii, gdy brakuje miejsca */
 }
 
 nav a {
-  color: #761517;
-  padding: 12px 24px;
-  margin: 0 10px 5px 10px; /* marginesy przy przyciskach */
-  border-radius: 0; /* kwadratowe przyciski */
-  text-decoration: none;
-  font-weight: bold;
-  background-color: white;
-  transition: background 0.3s ease, transform 0.2s ease;
+    color: var(--color-background-light); /* Jasny tekst na ciemnym tle */
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    padding: 0.9rem 1.8rem; /* Większy padding */
+    margin: 0 0.75rem; /* Odstęp między przyciskami */
+    border-radius: 1.8rem; /* Bardziej zaokrąglone */
+    transition: all var(--transition-medium); /* Wszystkie właściwości animowane */
+    display: inline-block; /* Zachowanie inline-block dla prawidłowego marginesu */
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.06em; /* Delikatny odstęp między literami */
+    font-weight: 500; /* Średnia waga */
+    text-transform: uppercase; /* Wielkie litery */
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-gold-bright), var(--color-gold-subtle)); /* Gradient złota */
+    transition: left 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce effect */
+    z-index: -1;
+}
+
+nav a:hover::before {
+    left: 0;
 }
 
 nav a:hover {
-  background-color: #ffe4ec;
-  transform: translateY(-3px);
+    color: var(--color-bordeaux-dark); /* Bordo na złotym tle */
+    transform: translateY(-0.35rem) rotate(1deg); /* Lekkie uniesienie i obrót */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+nav a.current-page {
+    background-color: var(--color-gold-bright);
+    color: var(--color-bordeaux-dark);
+    box-shadow: 0 0 1rem rgba(255, 215, 0, 0.6);
+    pointer-events: none;
+    transform: scale(1.05); /* Lekkie powiększenie aktywnego elementu */
+}
+
+
+/* --- Responsywność menu --- */
+@media (max-width: 992px) {
+    nav {
+        padding: 1rem 0;
+    }
+    nav a {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+        margin: 0 0.6rem;
+        letter-spacing: 0.04em;
+    }
 }
 
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
+    nav {
+        flex-direction: column; /* KLUCZOWA ZMIANA: Elementy układają się w kolumnę */
+        padding: 0.8rem 0; /* Zmniejsz padding nav, gdy elementy są w kolumnie */
+    }
 
-  nav a {
-    width: 80%;
-    text-align: center;
-    margin: 0 0 8px 0; /* góra 0, dół 8px */
-  }
+    nav a {
+        width: 90%; /* Przyciski zajmują prawie całą szerokość */
+        margin: 0.4rem 0; /* Większy odstęp między przyciskami (góra/dół) */
+        padding: 0.7rem 1.2rem;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 1.2rem;
+        letter-spacing: 0.03em;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+        margin: 0.3rem 0; /* Jeszcze mniejszy odstęp na bardzo małych ekranach */
+        width: 95%; /* Mogą być nieco szersze na najmniejszych ekranach */
+    }
 }
