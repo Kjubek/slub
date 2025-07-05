@@ -1,56 +1,164 @@
-  /* Zegar */
-  #zegarek {
+/* stylzegara.css - Wersja super nowoczesna */
+
+#zegarek {
     text-align: center;
-    padding: 40px 20px;
-    background: #fff;
-    border-radius: 25px;
-    margin: 20px auto;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    max-width: 800px;
-  }
-  
-  #zegarek h1 {
-    font-size: 2.5em;
-    color: #761517;
-    margin-bottom: 30px;
-  }
-  
-  .countdown {
+    margin: 3rem auto;
+    background: linear-gradient(135deg, var(--color-background-light), var(--color-background-medium)); /* Delikatny gradient tła */
+    padding: 3rem;
+    border-radius: 1.8rem;
+    box-shadow: var(--shadow-medium);
+    max-width: 850px;
+    animation: scaleIn 1s forwards var(--transition-slow);
+    border: 2px solid rgba(var(--color-bordeaux-light), 0.15); /* Subtelna ramka */
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#zegarek h1 {
+    color: var(--color-bordeaux-dark);
+    font-family: var(--font-heading);
+    font-size: 3.8rem; /* Jeszcze większy tytuł */
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.06);
+    letter-spacing: 0.05em; /* Odstęp między literami */
+}
+
+.countdown {
     display: flex;
     justify-content: center;
+    gap: 2rem; /* Większy odstęp */
     flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .time-box {
-    background: #B34740;
-    border-radius: 20px;
-    padding: 20px;
-    width: 110px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-  }
-  
-  .time-box:hover {
-    transform: translateY(-5px);
-  }
-  
-  .time-value {
-    font-size: 2.5em;
-    color: #761517;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .time-label {
-    font-size: 0.9em;
+}
+
+.time-box {
+    background-color: #ffffff; /* Białe tło dla boxa */
+    border: 3px solid var(--color-gold-bright); /* Gruba, żywa złota ramka */
+    border-radius: 1.5rem;
+    padding: 1.8rem 2.2rem; /* Większy padding */
+    min-width: 160px; /* Większa minimalna szerokość */
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+    animation: bounceIn 1s forwards ease-out;
+    animation-delay: var(--delay);
+    position: relative;
+    overflow: hidden; /* Dla pseudo-elementów */
+}
+
+.time-box::before { /* Delikatny gradient na krawędzi */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(var(--color-gold-bright), 0.1), transparent 50%, rgba(var(--color-gold-bright), 0.1));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.time-box:hover::before {
+    opacity: 1;
+}
+
+.time-box:hover {
+    transform: translateY(-0.8rem) scale(1.03); /* Większe uniesienie i powiększenie */
+    box-shadow: var(--shadow-medium);
+}
+
+/* Animacja dla każdego boxa z opóźnieniem */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem) scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-0.6rem) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.time-box:nth-child(1) { --delay: 0.1s; } /* Miesiące */
+.time-box:nth-child(2) { --delay: 0.25s; } /* Dni */
+.time-box:nth-child(3) { --delay: 0.4s; } /* Godziny */
+.time-box:nth-child(4) { --delay: 0.55s; } /* Minuty */
+
+
+.time-value {
+    font-family: var(--font-heading);
+    font-size: 4.5rem; /* Jeszcze większa wartość */
+    color: var(--color-bordeaux-dark);
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.time-label {
+    font-family: var(--font-body);
+    font-size: 1.3rem; /* Większa etykieta */
+    color: var(--color-light-bordeaux);
+    font-weight: 600;
     text-transform: uppercase;
-    color: #f0e6d2;
-  }
-  
-  #countdown {
-    margin-top: 20px;
-    font-size: 1.8em;
-    color: #4caf50;
-    font-weight: bold;
-  }
+    letter-spacing: 0.1em; /* Większy odstęp */
+}
+
+/* --- Responsywność zegara --- */
+@media (max-width: 992px) {
+    #zegarek { padding: 2.5rem; }
+    #zegarek h1 { font-size: 3.2rem; margin-bottom: 1.8rem;}
+    .countdown { gap: 1.5rem; }
+    .time-box {
+        padding: 1.5rem 1.8rem;
+        min-width: 140px;
+    }
+    .time-value { font-size: 4rem; }
+    .time-label { font-size: 1.2rem; }
+}
+
+@media (max-width: 768px) {
+    #zegarek {
+        padding: 2rem;
+        margin: 2.5rem auto;
+    }
+    #zegarek h1 { font-size: 2.8rem; margin-bottom: 1.5rem;}
+    .countdown { gap: 1rem; }
+    .time-box {
+        padding: 1.2rem 1.5rem;
+        min-width: 120px;
+        border-radius: 1.2rem;
+    }
+    .time-value { font-size: 3.5rem; }
+    .time-label { font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+    #zegarek {
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+    #zegarek h1 { font-size: 2.2rem; margin-bottom: 1rem;}
+    .countdown {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .time-box {
+        width: 90%;
+        max-width: 250px;
+        padding: 1rem 1.2rem;
+        border-radius: 1rem;
+    }
+    .time-value { font-size: 3rem; }
+    .time-label { font-size: 1rem; }
+}
