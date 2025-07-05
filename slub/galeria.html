@@ -9,6 +9,62 @@
     <link rel="icon" href="img/pierscien.png" type="image/x-icon">
     <script src="galeria.js" defer></script>
     <title>Galeria Weselna</title>
+    	 <style>
+        /* Proste style dla galerii i przycisku uploadu */
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 15px; /* Dodatkowy padding na dole */
+        }
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+            border-radius: 8px 8px 0 0; /* Zaokrąglij tylko górne rogi */
+            object-fit: cover; /* Upewnij się, że obraz wypełnia ramkę */
+            aspect-ratio: 16 / 9; /* Zachowaj proporcje 16:9, przycinając jeśli trzeba */
+        }
+        .gallery-item p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 0 10px;
+        }
+
+        .cloudinary-button {
+            background-color: var(--color-gold-bright);
+            color: var(--color-bordeaux-dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.03em;
+            margin-top: 20px;
+        }
+
+        .cloudinary-button:hover {
+            background-color: #FFEB80;
+            transform: translateY(-0.25rem);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        #upload_status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
   <header>
