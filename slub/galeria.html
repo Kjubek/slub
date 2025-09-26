@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,110 +7,26 @@
   <meta name="author" content="Jakub Kukulak">
   <title>Galeria Weselna</title>
   <link rel="icon" href="img/pierscien.png" type="image/x-icon">
-
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    nav {
-      background: #800020;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    h2, h3 {
-      text-align: center;
-    }
-
-    /* Formularz uploadu */
-    form {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    input[type="file"] {
-      margin: 10px 0;
-    }
-
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
+    nav { background: #800020; padding: 10px; display: flex; justify-content: center; gap: 20px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    main { max-width: 900px; margin: auto; padding: 20px; }
+    h2, h3 { text-align: center; }
+    form { text-align: center; margin-bottom: 20px; }
+    input[type="file"] { margin: 10px 0; }
     .cloudinary-button {
-      background-color: gold;
-      color: #800020;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-      margin-top: 10px;
+      background-color: gold; color: #800020; border: none;
+      padding: 1rem 2rem; border-radius: 2rem; cursor: pointer;
+      font-size: 1.1rem; font-weight: 600; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); margin-top: 10px;
     }
-
-    .cloudinary-button:hover {
-      background-color: #ffeb80;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    #upload_status {
-      margin-top: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Galeria */
-    #gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .gallery-item {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      padding-bottom: 10px;
-    }
-
-    .gallery-item img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px auto;
-      border-radius: 8px 8px 0 0;
-      object-fit: cover;
-      aspect-ratio: 16 / 9;
-    }
-
-    footer {
-      margin-top: 40px;
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-    }
+    .cloudinary-button:hover { background-color: #ffeb80; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+    #upload_status { margin-top: 15px; font-weight: bold; text-align: center; }
+    #gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+    .gallery-item { background-color: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; text-align: center; padding-bottom: 10px; }
+    .gallery-item img { max-width: 100%; height: auto; display: block; margin: 0 auto 10px auto; border-radius: 8px 8px 0 0; object-fit: cover; aspect-ratio: 16 / 9; }
+    footer { margin-top: 40px; background: #333; color: #fff; text-align: center; padding: 15px; }
   </style>
 </head>
 <body>
@@ -145,7 +62,7 @@
   </footer>
 
   <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbyQ-2zm59YTvP4IP9XPo8Bu-6wEIbr7Z5ktj1FXy_1ZkYmIvX9xHfl2lsyXqG53JmnX/exec"; // <- tu wstaw URL z Google Apps Script
+  const API_URL = "https://script.google.com/macros/s/AKfycbyQ-2zm59YTvP4IP9XPo8Bu-6wEIbr7Z5ktj1FXy_1ZkYmIvX9xHfl2lsyXqG53JmnX/exec"; // <- URL web appa GAS
 
   // Upload pliku
   document.getElementById("uploadForm").addEventListener("submit", async (e) => {
@@ -158,6 +75,7 @@
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("filename", file.name); // dodajemy nazwę pliku
 
     try {
       const res = await fetch(API_URL, {
@@ -190,7 +108,7 @@
         const item = document.createElement("div");
         item.className = "gallery-item";
         item.innerHTML = `
-          <img src="https://drive.google.com/uc?id=${f.id}" alt="${f.name}">
+          <img src="${f.url}" alt="${f.name}">
           <p>${f.name}</p>
         `;
         gallery.appendChild(item);
@@ -206,3 +124,4 @@
   </script>
 </body>
 </html>
+```
